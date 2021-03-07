@@ -66,7 +66,7 @@ while True:
         down()
         if(process.progressBar.value!=process.duration):
             allFinished=0
-        processesExecuting.pop()
+
 
     if(allFinished==1):
         break
