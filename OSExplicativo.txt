@@ -8,3 +8,6 @@ A representação de processos se da por barras de progresso, mostrando o tempo 
 
 Implementei utilizando interface de terminal, por esse motivo algumas execuções são instáveis, 
 sobrepondo labels em cima das barras de progresso, mas basta cancelar a execução e começar de novo.
+
+É possivel mudar a quantidade de processos, duração do quantum, chance de ocorrer uma interrupção e a duração maxima de um processo,
+nas variaveis globais definidas no começo do código.

@@ -3,7 +3,7 @@ import time
 import random
 import progressbar
 
-PROCESSES_LENGHT = 15 # Numero processos
+PROCESSES_LENGHT = 10 # Numero processos
 QUANTUM_DURATION = 0.5 # Duração do quantum em segundos
 INTERRUPTION_CHANCE = 5 # 1=100%, 2=50%, 3=33%, 4=25%, 5=20% ...
 PROCESS_MAX_DURATION = 10
@@ -64,24 +64,25 @@ for i in range((PROCESSES_LENGHT*2)-1):
 
 # Feedback visual para processo terminado
 def printEnded(process,first):
+    down()
     up()
     up()
-    print("P"+process.info+" | Duração: "+ str(process.duration)+ " Prioridade: "+str(process.priority)+" **ENDED**")
+    print("P"+process.info+" | Duração: "+ str(process.duration)+ " Prioridade: "+str(process.priority)+" **ENDED**    ")
     process.progressBar.update(process.progressBar.value)
 
 # Feedback visual para processo bloqueado
 def printBlocked(process,first):
-    if(first==False):
-        up()
+    down()
+    up()
     up()
     print("P"+process.info+" | Duração: "+ str(process.duration)+ " Prioridade: "+str(process.priority)+" **BLOCKED**")
     process.progressBar.update(process.progressBar.value)
 
-# Feedback visual para processo normal/ready
-def printNormal(process):
-    up()
-    print(process.info+" | Duração: "+ str(process.duration)+ " Prioridade: "+str(process.priority)+"              ")
-    process.progressBar.update(process.progressBar.value)
+# # Feedback visual para processo normal/ready
+# def printNormal(process,first):
+#     up()
+#     print(process.info+" | Duração: "+ str(process.duration)+ " Prioridade: "+str(process.priority)+"              ")
+#     process.progressBar.update(process.progressBar.value)
 
 # Função simulando chamada de sistema, bloqueando o processo
 def systemCallInterruption(process,first):
@@ -106,8 +107,8 @@ def steps(process,first):
     else:
         quantum=4  
    
-    if(process.state != 5):
-        printNormal(process)
+    # if(process.state != 5):
+    #     printNormal(process,first)
 
     notEnded=1
     for i in range(quantum):
