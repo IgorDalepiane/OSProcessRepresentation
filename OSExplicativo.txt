@@ -1,0 +1,10 @@
+Para rodar basta digitar "python3 main.py"
+
+Neste programa eu implementei o algoritimo Round Robin com prioridades, realizei mudanças de prioridade quando,
+o processo acaba a utilização do quantum e não termina por completo (diminui a prioridade), e quando
+o processo sofre uma interrupção de sistema (representada por uma operação randomica, aumentando a prioridade).
+
+A representação de processos se da por barras de progresso, mostrando o tempo atual e máximo.
+
+Implementei utilizando interface de terminal, por esse motivo algumas execuções são instáveis, 
+sobrepondo labels em cima das barras de progresso, mas basta cancelar a execução e começar de novo.
