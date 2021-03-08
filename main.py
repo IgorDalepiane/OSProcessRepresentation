@@ -46,30 +46,40 @@ for x in range(PROCESSES_LENGHT):
 for process in processesCreated:
     newProgressBar = progressbar.ProgressBar(maxval=process.duration)
     process.progressBar = newProgressBar
+    print(process.info+" | Duração: "+ str(process.duration)+ " Prioridade: "+str(process.priority))
     process.progressBar.start()
     process.state=2
     processesReady.append(process)
     down()
-for i in range(PROCESSES_LENGHT):
+for i in range((PROCESSES_LENGHT*2) -1):
     up()
 while True:
     allFinished=1
     for process in processesReady:
+        processesExecuting.append(process)
+        if(process.priority>=1 and process.priority<=7 ):
+            quantum=2
+        elif(process.priority>=8 and process.priority<=16):
+            quantum=3
+        else:
+            quantum=4  
 
-        for i in range(2):
+        for i in range(quantum):
             actualTime = process.progressBar.value
             if(actualTime+1 <= process.duration):
                 process.progressBar.update(actualTime+1)
                 time.sleep(0.5)
             else:
+                # process.progressBar.finish()
                 break
+        down()
         down()
         if(process.progressBar.value!=process.duration):
             allFinished=0
-
+        processesExecuting.pop()
 
     if(allFinished==1):
         break
 
-    for i in range(PROCESSES_LENGHT):
+    for i in range((PROCESSES_LENGHT*2)):
         up()
